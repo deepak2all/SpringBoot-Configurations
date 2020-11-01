@@ -39,7 +39,8 @@ mvn spring-boot:run
 ## Documentation
 
 *1. Have the config externalized*
-          ### Using @Value annotations
+          ### Using @Value annotations to fetch static value ###
+          ### Using @Value annotations accompanied with $, to fetch values from properties file, dynamically ###
 
 *2. Have the config environment specific*
 
