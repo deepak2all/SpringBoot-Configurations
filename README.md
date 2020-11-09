@@ -3,7 +3,7 @@ SpringBoot-Configurations
 
 
 ## Description: 
-Best proactices to keep the configurations in Microservice World
+Best proctices to keep the configurations in Microservice World
 
 
 ## Goals
@@ -40,21 +40,21 @@ mvn spring-boot:run
 
 *1. Have the config externalized* - Using application.properties which can be configured within and outside of jar file (different levels)
 ```
-Using @Value annotations to fetch static value
+a) Using @Value annotations to fetch static value
 ```
 ```
-Using @Value annotations accompanied with $, to fetch values from properties file, dynamically
+b) Using @Value annotations accompanied with $, to fetch values from properties file, dynamically
 ```
 ```
-Using @Value annotations accompanied with $ and #, to fetch values from properties file, dynamically as maps (SPEL)
+c) Using @Value annotations accompanied with $ and #, to fetch values from properties file, dynamically as maps (SPEL)
 ```
 ```
-To group and fetch multiple properties at once, dynamically using ConfigurationProperties
+d) To group and fetch multiple properties at once, dynamically using ConfigurationProperties
 ```
 
 *2. Have the config environment specific - Using Profiles*
 ```
-New profiles can be creates using the naming convention - application-<profileName>.extn
+New profiles can be creates using the naming convention - application-<profileName>.extn (where extn can be "properties" or "yml")
 Profiles can be activated from properties using the below config
 spring.profiles.active=<profileName>
 It can be activated externally from command line 
@@ -63,9 +63,24 @@ java -jar spring-boot-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=<profil
 
 *3. Have the config consistent (so that all microservices look at one particular version of file)*
 
+```
+Popular options
+a) Apache Zookeeper
+b) ETCD - Distributed key values store
+c) Spring Cloud Configuration Server
+```
+
 *4. Version history*
+```
+Managed using GIT for Spring Cloud Configuration Server
+```
 
 *5. Real time management (without bringing down the microservices)*
+```
+a) For the Spring Cloud Configuration Server, it always looks at the GIT repo and henceforth any changes made into GIT repo is reflected in the server, without re-start
+b) For the clients, one of the end-point that actuator exposes is the hook. Using hook, we can tell the client to refresh it's config. The beans annotated with "@RefreshScope" alone gets refreshed upon notification. And actuator end-point from where the post needs to happen is 
+http://<server-name>:<port>/actuator/refresh
+```
 
 *6. Viewing the Configured properties*
 ```
