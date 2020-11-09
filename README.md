@@ -3,7 +3,7 @@ SpringBoot-Configurations
 
 
 ## Description: 
-Best proctices to keep the configurations in Microservice World
+This gives best practices and different configurations options available in the Microservices Ecosystem
 
 
 ## Goals
